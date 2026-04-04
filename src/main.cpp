@@ -1,3 +1,5 @@
+#include "backends/imgui_impl_opengl3.h"
+#include "backends/imgui_impl_sdl3.h"
 #include "game.hpp"
 #include "utils.hpp"
 
@@ -118,6 +120,13 @@ SDL_AppResult SDL_AppIterate(void* appstate) {
 
 void SDL_AppQuit(void*, const SDL_AppResult result) {
 	Game::getInstance()->save();
+
+    // Exit opengl here or else it'll bug
+#ifdef IMGUI
+	ImGui_ImplOpenGL3_Shutdown();
+	ImGui_ImplSDL3_Shutdown();
+	ImGui::DestroyContext();
+#endif
 
 	if (result == SDL_APP_SUCCESS) {
 		SDL_Log("Cyao game engine terminated successfully");

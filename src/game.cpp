@@ -149,12 +149,6 @@ void Game::init() {
 Game::~Game() {
 	SDL_Log("Quitting game\n");
 
-#ifdef IMGUI
-	ImGui_ImplOpenGL3_Shutdown();
-	ImGui_ImplSDL3_Shutdown();
-	ImGui::DestroyContext();
-#endif
-
 	for (const auto [data, _] : mAudio) {
 		SDL_free(data);
 	}
