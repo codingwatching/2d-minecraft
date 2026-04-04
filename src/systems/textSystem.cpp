@@ -27,7 +27,7 @@
 // FIXME: Maybe add support for emojis
 // FIXME: Better unicode support
 TextSystem::TextSystem(const unsigned int size, const bool final) noexcept
-	: mGame(Game::getInstance()), mPath(getBasePath() + "assets/fonts/"), mSize(size), mFont(),
+	: mGame(Game::getInstance()), mPath(getBasePath() + "fonts/"), mSize(size), mFont(),
 	  mFontData(nullptr, SDL_free), mChild(nullptr) {
 	/*
 	 * NOTE:

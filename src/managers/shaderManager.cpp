@@ -11,7 +11,7 @@
 #include <unordered_map>
 #include <version>
 
-ShaderManager::ShaderManager() : mPath(getBasePath() + "assets/shaders/") { get("default.vert", "default.frag"); }
+ShaderManager::ShaderManager() : mPath(getBasePath() + "shaders/") { get("default.vert", "default.frag"); }
 
 Shader* ShaderManager::get(std::string_view vert, std::string_view frag, std::string_view geom) {
 #ifdef __cpp_lib_string_contains

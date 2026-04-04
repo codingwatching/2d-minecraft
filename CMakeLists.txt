@@ -388,7 +388,8 @@ if(NOT ANDROID) # Android projects include themself using subdirectory
         target_link_libraries(${BUILD_NAME} PRIVATE SDL3::SDL3 SDL3::Headers)
     endif()
 else()
-    target_link_libraries(${BUILD_NAME} PRIVATE SDL3::SDL3)
+    # Android
+    target_link_libraries(${BUILD_NAME} PRIVATE SDL3::SDL3 GLESv3 EGL)
 endif()
 
 # ImGUI
@@ -400,7 +401,7 @@ if(IMGUI STREQUAL ON)
 	endif()
 
 	target_sources(${BUILD_NAME} PRIVATE ${IMGUI_SRC})
-	target_include_directories(${BUILD_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/external/imgui)
+    target_include_directories(${BUILD_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/external/imgui)
 
 	if(MSVC)
 		target_compile_definitions(${BUILD_NAME} PRIVATE /DIMGUI)

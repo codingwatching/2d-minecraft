@@ -18,7 +18,7 @@
 #include <version>
 
 TextureManager::TextureManager()
-	: mPath(getBasePath() + "assets/textures/"), mBlitzed(new bool[etoi(Components::Item::ITEM_COUNT)]) {
+	: mPath(getBasePath() + "textures/"), mBlitzed(new bool[etoi(Components::Item::ITEM_COUNT)]) {
 	for (std::uint64_t i = 0; i < etoi(Components::Item::ITEM_COUNT); ++i) {
 		mBlitzed[i] = 0;
 	}

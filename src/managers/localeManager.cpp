@@ -12,7 +12,7 @@
 #include <vector>
 #include <version>
 
-LocaleManager::LocaleManager() : mLocaleDir(getBasePath() + "assets/strings/"), mLocaleDataS(nullptr, SDL_free) {
+LocaleManager::LocaleManager() : mLocaleDir(getBasePath() + "strings/"), mLocaleDataS(nullptr, SDL_free) {
 	int c = 0;
 	SDL_Locale** const loc = SDL_GetPreferredLocales(&c);
 	std::string locList = "";

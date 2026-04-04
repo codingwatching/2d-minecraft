@@ -28,9 +28,6 @@
 #include <vector>
 
 #ifdef IMGUI
-#ifdef GLES
-#define IMGUI_IMPL_OPENGL_ES3
-#endif
 #include <backends/imgui_impl_opengl3.h>
 #include <backends/imgui_impl_sdl3.h>
 #include <imgui.h>
@@ -115,7 +112,7 @@ RenderSystem::RenderSystem() noexcept
 
 	// No icon on web
 #ifndef __EMSCRIPTEN__
-	mIcon.reset(SDL_LoadBMP((getBasePath() + "assets/textures/icon.bmp").data()));
+	mIcon.reset(SDL_LoadBMP((getBasePath() + "textures/icon.bmp").data()));
 	if (!SDL_SetWindowIcon(mWindow.get(), mIcon.get())) {
 		SDL_LogCritical(SDL_LOG_CATEGORY_VIDEO, "\033]31mFailed to set window icon: %s\n\033]0m",
 				SDL_GetError());
@@ -221,7 +218,7 @@ RenderSystem::RenderSystem() noexcept
 
 #ifndef __ANDROID__
 	std::unique_ptr<SDL_Surface, void (*)(SDL_Surface*)> cursorSurface(
-		SDL_LoadBMP((getBasePath() + "assets/textures/crosshair.bmp").data()), SDL_DestroySurface);
+		SDL_LoadBMP((getBasePath() + "textures/crosshair.bmp").data()), SDL_DestroySurface);
 
 	if (cursorSurface) {
 		mCursor.reset(SDL_CreateColorCursor(cursorSurface.get(), 8, 8));

@@ -4,6 +4,12 @@
 #include <string>
 #include <vector>
 
+#ifdef ANDROID
+#define POFIX "/"
+#else
+#define POFIX "assets/"
+#endif
+
 namespace utils {
 class sparse_set_interface;
 }
@@ -14,7 +20,7 @@ std::vector<int*> mViewCache;
 std::string getBasePath_impl() {
 	const char* basepath = SDL_GetBasePath();
 	if (basepath != nullptr) {
-		return std::string(basepath);
+		return std::string(basepath) + POFIX;
 	} else {
 		SDL_LogError(SDL_LOG_PRIORITY_ERROR, "\033[31mFailed to get base path: %s\033[0m", SDL_GetError());
 

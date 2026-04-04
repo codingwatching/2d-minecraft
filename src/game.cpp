@@ -110,7 +110,7 @@ void Game::init() {
 			&attr,
 			("https://rawcdn.githack.com/cheyao/opengl/refs/heads/main/assets/sounds/" + file).data());
 #else
-		if (SDL_LoadWAV((getBasePath() + "assets/sounds/" + file).data(), &spec, &wav_data, &wav_data_len)) {
+		if (SDL_LoadWAV((getBasePath() + "sounds/" + file).data(), &spec, &wav_data, &wav_data_len)) {
 			mAudio.emplace_back(std::make_pair(wav_data, wav_data_len));
 		} else {
 			SDL_Log("Couldn't load .wav file: %s", SDL_GetError());
@@ -148,6 +148,12 @@ void Game::init() {
 
 Game::~Game() {
 	SDL_Log("Quitting game\n");
+
+#ifdef IMGUI
+	ImGui_ImplOpenGL3_Shutdown();
+	ImGui_ImplSDL3_Shutdown();
+	ImGui::DestroyContext();
+#endif
 
 	for (const auto [data, _] : mAudio) {
 		SDL_free(data);
